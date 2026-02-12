@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: grpc-server
+  grpc:
+    server:
+      port: 19090
+logging:
+  pattern:
+    console: "%boldMagenta(%d{yyyy-MM-dd HH:mm:ss.SSS}) | %highlight(%-5level) | %boldYellow(%-18t) | %boldGreen(%50.50logger{49}):%boldGreen(%-4.4line) | %msg%n"

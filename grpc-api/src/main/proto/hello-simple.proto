@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package com.github.xuchen93.grpc.api.simple;
+
+// 开启多文件模式，方便管理
+option java_multiple_files = true;
+option java_package = "com.github.xuchen93.grpc.api.simple";
+option java_outer_classname = "HelloSimpleProto";
+
+// --- 消息定义 ---
+
+message HelloSimpleRequest {
+  string name = 1;
+}
+
+message HelloSimpleResponse {
+  string message = 1;
+}
+
+message StreamRequestChunk {
+  int64 number = 1;
+}
+
+message StreamResponseSummary {
+  int64 chunk_count = 1;
+  int64 total_number = 2;
+  double average_number = 3;
+  string message = 4;
+}
+
+message BidirectionalChatMessage {
+  string username = 1;
+  string message = 2;
+  bool is_error = 3;
+}
+
+// --- 服务定义 ---
+
+service HelloSimpleService {
+  // 1. 简单RPC：一问一答
+  rpc sayHello(HelloSimpleRequest) returns (HelloSimpleResponse);
+
+  // 2. 服务端流式RPC：一问多答（例如：订阅消息、下载文件）
+  rpc streamHello(HelloSimpleRequest) returns (stream HelloSimpleResponse);
+
+  // 3. 客户端流式RPC：多问一答（例如：数据汇总、文件上传）
+  rpc clientStreamHello(stream StreamRequestChunk) returns (StreamResponseSummary);
+
+  // 4. 双向流式RPC：多问多答（例如：实时聊天）
+  rpc bidirectionalChat(stream BidirectionalChatMessage) returns (stream BidirectionalChatMessage);
+}
