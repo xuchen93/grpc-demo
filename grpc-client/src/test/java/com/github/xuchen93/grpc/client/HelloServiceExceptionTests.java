@@ -251,7 +251,7 @@ public class HelloServiceExceptionTests {
 
 				@Override
 				public void onError(Throwable t) {
-					log.info("【客户端流式RPC】服务端返回异常：{}", t.getMessage());
+					log.warn("【客户端流式RPC】服务端返回异常：{}", t.getMessage());
 					finishLatch.countDown();
 				}
 
@@ -308,7 +308,7 @@ public class HelloServiceExceptionTests {
 
 				@Override
 				public void onError(Throwable t) {
-					log.info("【双向流式RPC】服务端返回异常：{}", t.getMessage());
+					log.warn("【双向流式RPC】服务端返回异常：{}", t.getMessage());
 					finishLatch.countDown();
 				}
 
@@ -401,7 +401,7 @@ public class HelloServiceExceptionTests {
 
 				@Override
 				public void onError(Throwable t) {
-					log.info("【双向流式RPC】服务端返回异常：{}", t.getMessage());
+					log.warn("【双向流式RPC】服务端返回异常：{}", t.getMessage());
 					finishLatch.countDown();
 				}
 
